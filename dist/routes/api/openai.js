@@ -18,9 +18,10 @@ const openAI_1 = __importDefault(require("../../config/openAI"));
 const router = express_1.default.Router();
 exports.openAI = router;
 router.get("/test", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("request", req.query);
     const completion = yield openAI_1.default.createCompletion({
         model: "text-davinci-002",
-        prompt: "How are you doing?",
+        prompt: req.query.input,
         max_tokens: 150,
     });
     res.send(completion.data.choices[0].text);

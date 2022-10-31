@@ -4,9 +4,11 @@ import openai from "../../config/openAI";
 const router = express.Router();
 
 router.get("/test", async (req: Request, res: Response) => {
+  console.log("request", req.query);
+
   const completion = await openai.createCompletion({
     model: "text-davinci-002",
-    prompt: "How are you doing?",
+    prompt: req.query.input,
     max_tokens: 150,
   });
 
